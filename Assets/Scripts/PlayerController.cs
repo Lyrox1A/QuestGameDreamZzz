@@ -1,49 +1,58 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
+using Cinemachine;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [Min(0)]
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 3f; // Move Speed halt
     
     [Min(0)]
-    [SerializeField] private float speedChangeRate = 5f;
+    [SerializeField] private float speedChangeRate = 5f; // Beschleunigung quasi
 
     [Min(0)]
-    [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private float rotationSpeed = 10f; // Rotationsgeschwindigkeit 
 
     [Header("Camera")]
     [Tooltip("The focus and rotation point of the camera")]
-    [SerializeField] private Transform cameraTarget;
+    [SerializeField] private Transform cameraTarget; //Transformfeld Objekt Selection
 
     [Range(-89f , 0f)]
-    [SerializeField] private float VerticalCameraRotationMin = -30f;
+    [SerializeField] private float VerticalCameraRotationMin = -30f; //Mind. Kamerarotation 
     
     [Range(0f , 89f)]
-    [SerializeField] private float VerticalCameraRotationMax = 70f;
+    [SerializeField] private float VerticalCameraRotationMax = 70f; //Max. Kamerarotation 
     
     [Min(0)]
     [Tooltip("Sense of Horizontal Cam rotation")]
-    [SerializeField] private float cameraHorizontalSpeed = 200f;
+    [SerializeField] private float cameraHorizontalSpeed = 200f; // Sense Schnelligkeit der Kamera in Grad
     
     [Min(0)]
     [Tooltip("Sense of Vertical Cam rotation")]
-    [SerializeField] private float cameraVerticalSpeed = 130f;
+    [SerializeField] private float cameraVerticalSpeed = 130f; // sense Schnelligkeit der Kamera in Grad
 
     [Header("Mouse Settings")]
 
+    //TODO 
     [Range(0f, 2f)]
-    [SerializeField] private float mouseCameraSense = 1f;
+    [SerializeField] private float mouseCameraSense = 1f; //Maussense Multiplier
     
+    //TODO 
     [Header("Controller Settings")]
     [Range(0f, 2f)]
-    [SerializeField] private float controllerCameraSense = 1f;
-
+    [SerializeField] private float controllerCameraSense = 1f; //Controllersense Multiplier
+                                                               
+    //TODO 
     [Tooltip("Invert Y-Axis for controller")]
-    [SerializeField] private bool invertY = true;
+    [SerializeField] private bool invertY = true; // invertY 
+
+    [Header("Animations")]
+    [SerializeField] private Animator animator;
     
 
     private GameInput input;
@@ -57,14 +66,18 @@ public class PlayerController : MonoBehaviour
     private Vector2 lookInput;
     
     private Quaternion characterTargetRotation;
-    private Vector2 cameraRotation; 
+    private Vector2 cameraRotation;
+
+    private Interactable selectedInteractable; 
     
-    private void Awake()
+    private void Awake() // called once at the beginning if game object is active 
     {
-        input = new GameInput();
-        moveAction = input.Player.Move;
+        input = new GameInput(); // Create new Gameinput
+        moveAction = input.Player.Move; // Variable Usage of the actions 
         lookAction = input.Player.Look;
 
+        input.Player.Interact.performed += Interact;
+        
         characterController = GetComponent<CharacterController>();
 
         //TODO Subscribe to input events
@@ -79,6 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         ReadInput();
         move(moveInput);
+        UpdateAnimator();
     }
 
     private void LateUpdate()
@@ -99,9 +113,19 @@ public class PlayerController : MonoBehaviour
     
     private void OnDestroy()
     {
-        //TODO Unsubscribe to input events
+        // Unsubscribe to input events
+        input.Player.Interact.performed -= Interact;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        TrySelectInteractable(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        TryDeselectInteractable(other);
+    }
     private void ReadInput()
     {
         moveInput = moveAction.ReadValue<Vector2>();
@@ -140,7 +164,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            currentSpeed = targetSpeed; // 
+            currentSpeed = targetSpeed; 
         }
 
 
@@ -154,8 +178,7 @@ public class PlayerController : MonoBehaviour
 
     private void RotateCamera(Vector2 lookInput)
     {
-        Debug.Log(lookInput);
-        
+
         if (lookInput != Vector2.zero)
         {
             bool isMouseLook = IsMouseLook();
@@ -196,5 +219,58 @@ public class PlayerController : MonoBehaviour
         }
 
         return angle;
+    }
+
+    private void UpdateAnimator()
+    {
+        Vector3 velocity = characterController.velocity;
+        velocity.y = 0;
+        float speed = velocity.magnitude;
+        
+        animator.SetFloat("MovementSpeed", speed);
+
+        //TODO only set to false if we are following for a few frames OR
+        //TODO Check with raycast 
+        animator.SetBool("Grounded", characterController.isGrounded);
+    }
+
+    private void Interact(InputAction.CallbackContext _)
+    {
+        if (selectedInteractable != null)
+        {
+            selectedInteractable.Interact();
+        }
+    }
+    private void TrySelectInteractable(Collider other)
+    {
+        Interactable interactable = other.GetComponent<Interactable>();
+        if (interactable == null)
+        {
+            return;
+        }
+
+        if (selectedInteractable != null)
+        {
+            selectedInteractable.Deselect();
+        }
+
+        selectedInteractable = interactable;
+        selectedInteractable.Select();
+
+    }
+
+    private void TryDeselectInteractable(Collider other)
+    {
+        Interactable interactable = other.GetComponent<Interactable>();
+        if (interactable == null)
+        {
+            return;
+        }
+
+        if (interactable == selectedInteractable )
+        {
+            selectedInteractable.Deselect();
+            selectedInteractable = null;
+        }
     }
 }
