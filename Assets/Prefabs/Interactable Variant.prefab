@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 1235601090}
   - component: {fileID: 1235601089}
   - component: {fileID: 1235601088}
+  - component: {fileID: 9121701478562246960}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -692,7 +693,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
+  - {fileID: 2100000, guid: b22d35a448fc3bc4b8b154fbce368ff3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -736,6 +737,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &9121701478562246960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235601086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd77b39b2abe6043ada4b8d23bbeeb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yMovement: -0.3
+  pressColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  downDuration: 0.5
+  easeIn: 6
+  durationIn: 0.5
+  easeOut: 6
+  durationOut: 0.5
 --- !u!1001 &5251688514462561889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -802,6 +822,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7499898830297955517, guid: 833bfe272079a0847a5335ca7d463cc6,
+        type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7499898830297955517, guid: 833bfe272079a0847a5335ca7d463cc6,
+        type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7499898830297955517, guid: 833bfe272079a0847a5335ca7d463cc6,
+        type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 833bfe272079a0847a5335ca7d463cc6, type: 3}

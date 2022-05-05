@@ -75,17 +75,18 @@ public class PlayerController : MonoBehaviour
         input = new GameInput(); // Create new Gameinput
         moveAction = input.Player.Move; // Variable Usage of the actions 
         lookAction = input.Player.Look;
-
+        
         input.Player.Interact.performed += Interact;
         
         characterController = GetComponent<CharacterController>();
 
         //TODO Subscribe to input events
+        
     }
     
     private void OnEnable()
     {
-        input.Enable();
+        EnableInput();
     }
 
     private void Update()
@@ -108,7 +109,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        input.Disable();
+        DisableInput();
+        
     }
     
     private void OnDestroy()
@@ -126,6 +128,17 @@ public class PlayerController : MonoBehaviour
     {
         TryDeselectInteractable(other);
     }
+
+    public void EnableInput()
+    {
+        input.Enable();
+    }
+
+    public void DisableInput()
+    {
+        input.Disable();
+    }
+    
     private void ReadInput()
     {
         moveInput = moveAction.ReadValue<Vector2>();
