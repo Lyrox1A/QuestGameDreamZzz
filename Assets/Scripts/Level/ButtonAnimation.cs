@@ -48,7 +48,7 @@ public class ButtonAnimation : MonoBehaviour
                                     .SetEase(easeIn))
                    .Join(meshRenderer.material.DOColor(pressColor, durationIn).SetEase(Ease.Linear))
                    .AppendInterval(downDuration)
-                   .Append(transform.DOLocalMoveY(yMovement, durationOut)
+                   .Append(transform.DOLocalMoveY(-yMovement, durationOut)
                                     .SetRelative()
                                     .SetEase(easeOut))
                    .Join(meshRenderer.material.DOColor(originalColor, durationOut).SetEase(Ease.Linear));
