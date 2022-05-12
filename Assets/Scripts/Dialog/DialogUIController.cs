@@ -3,6 +3,8 @@
 using DG.Tweening;
 
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 public class DialogUIController : MonoBehaviour
 {
     public static event Action<Dialog> DialogOpened;  
@@ -45,7 +47,7 @@ public class DialogUIController : MonoBehaviour
             OpenDialog();
         }
         
-        DisplayDialog(0);
+        DisplayDialogEntry(0);
     }
 
     private void OpenDialog()
@@ -64,6 +66,9 @@ public class DialogUIController : MonoBehaviour
 
         currentDialog = null;
         currentIndex = 0;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        
         dialogBox.DOHide()
                  .OnComplete(() =>
                  {
@@ -76,7 +81,7 @@ public class DialogUIController : MonoBehaviour
         }
     }
 
-        public void DisplayDialog(int index)
+        public void DisplayDialogEntry(int index)
     {
         if (index >= currentDialog.entries.Count)
         {
@@ -92,7 +97,7 @@ public class DialogUIController : MonoBehaviour
     private void AdvanceDialogContinue(DialogBox _)
     {
         currentIndex++;
-        DisplayDialog(currentIndex);
+        DisplayDialogEntry(currentIndex);
     }
 }
 

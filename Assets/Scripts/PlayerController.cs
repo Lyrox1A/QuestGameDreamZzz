@@ -214,6 +214,11 @@ public class PlayerController : MonoBehaviour
 
     private bool IsMouseLook()
     {
+        if (lookAction.activeControl == null)
+        {
+            return false;
+        }
+        
         return lookAction.activeControl.name == "delta";
     }
 

@@ -32,12 +32,12 @@ public class Interaction : MonoBehaviour
 
     public void Excute()
     {
-        onInteract.Invoke();
-
         if (nextInteraction != null)
         {
             nextInteraction.gameObject.SetActive(true);
         }
+        
+        onInteract.Invoke();
     }
     
     

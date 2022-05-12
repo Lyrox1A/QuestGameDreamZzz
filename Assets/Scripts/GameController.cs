@@ -20,6 +20,12 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<PlayerController>();
+
+        if (player == null)
+        {
+            Debug.LogError("No player found in scene.", this);
+        }
+        
         EnterPlayMode();
     }
 
