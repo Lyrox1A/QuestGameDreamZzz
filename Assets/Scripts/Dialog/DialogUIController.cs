@@ -57,6 +57,7 @@ public class DialogUIController : MonoBehaviour
             DialogOpened(currentDialog);
         }
         dialogBox.gameObject.SetActive(true);
+        dialogBox.DOShow();
     }
 
     private void CloseDialog()
