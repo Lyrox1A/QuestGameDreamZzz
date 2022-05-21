@@ -12,7 +12,11 @@ public class TriggerEvents : MonoBehaviour
 
     [SerializeField] private bool filterByTag = true;
 
-    [SerializeField] private string reactOn = "Player"; 
+    [SerializeField] private string reactOn = "Player";
+
+    [SerializeField] private bool combineTrigger = true;
+
+    private int triggerCount = 0; 
     
     private void OnTriggerEnter(Collider other)
     {
@@ -21,12 +25,31 @@ public class TriggerEvents : MonoBehaviour
             return;
         }
 
-        onTriggerEnter.Invoke(); 
+        triggerCount++;
+        
+        if (triggerCount < 1)
+        {
+            triggerCount = 1;
+        }
+
+        if (combineTrigger && triggerCount != 1)
+        {
+            return;
+        }
+        
+        onTriggerEnter.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (filterByTag && !other.CompareTag(reactOn))
+        {
+            return;
+        }
+
+        triggerCount--;
+
+        if (combineTrigger && triggerCount != 0)
         {
             return;
         }

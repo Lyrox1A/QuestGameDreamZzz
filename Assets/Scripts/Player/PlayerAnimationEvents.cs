@@ -9,8 +9,8 @@ using UnityEngine.Events;
 public class PlayerAnimationEvents : MonoBehaviour
 {
     [SerializeField] private StudioEventEmitter stepSound;
-    
-    //[SerializeField] private StudioEventEmitter landsound
+
+    //[SerializeField] private StudioEventEmitter landSound;
 
     [SerializeField] private string stepSoundParameterName = "surface";
     [SerializeField] private PhysicMaterial defaultPhysicMaterial;
@@ -24,7 +24,8 @@ public class PlayerAnimationEvents : MonoBehaviour
     
     
     [SerializeField] private UnityEvent onStep;
-    
+
+    //[SerializeField] private UnityEvent onLand;
     
     public void Step(AnimationEvent animationEvent)
     {
@@ -36,6 +37,11 @@ public class PlayerAnimationEvents : MonoBehaviour
         stepSound.Play();
         ChangeStepSound();
         onStep.Invoke();
+    }
+    
+    public void Land(AnimationEvent animationEvent)
+    {
+        //later if land sounds there
     }
 
     public void Land()

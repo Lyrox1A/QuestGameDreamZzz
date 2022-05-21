@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     [Min(0)]
     [SerializeField] private float rotationSpeed = 10f; // Rotationsgeschwindigkeit 
 
+    [Min(0)]
+    [SerializeField] private float groundCheckDelay = 0.3f;
+
     [Header("Camera")]
     [Tooltip("The focus and rotation point of the camera")]
     [SerializeField] private Transform cameraTarget; //Transformfeld Objekt Selection
@@ -68,6 +71,11 @@ public class PlayerController : MonoBehaviour
     private Quaternion characterTargetRotation;
     private Vector2 cameraRotation;
 
+    private Vector3 lastMovement;
+    private bool isGrounded;
+    private float airTime;
+    
+
     private Interactable selectedInteractable; 
     
     private void Awake() // called once at the beginning if game object is active 
@@ -93,6 +101,7 @@ public class PlayerController : MonoBehaviour
     {
         ReadInput();
         move(moveInput);
+        UpdateGrounded();
         UpdateAnimator();
     }
 
@@ -167,7 +176,7 @@ public class PlayerController : MonoBehaviour
         
         float targetSpeed = moveInput == Vector2.zero ? 0f : moveSpeed * moveInput.magnitude; // target speed = move speed if we have input otherwise its zero
 
-        Vector3 currentVelocity = characterController.velocity;
+        Vector3 currentVelocity = lastMovement;
         currentVelocity.y = 0f;
         float currentSpeed = currentVelocity.magnitude;
 
@@ -185,8 +194,22 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = targetDirection * currentSpeed;    
 
-        characterController.SimpleMove(movement); 
+        characterController.SimpleMove(movement);
 
+    }
+
+    private void UpdateGrounded()
+    {
+        if (characterController.isGrounded)
+        {
+            airTime = 0;
+        }
+        else
+        {
+            airTime += Time.deltaTime;
+        }
+
+        isGrounded = airTime < groundCheckDelay;
     }
 
     private void RotateCamera(Vector2 lookInput)
@@ -246,10 +269,10 @@ public class PlayerController : MonoBehaviour
         float speed = velocity.magnitude;
         
         animator.SetFloat("MovementSpeed", speed);
-
-        //TODO only set to false if we are following for a few frames OR
-        //TODO Check with raycast 
-        animator.SetBool("Grounded", characterController.isGrounded);
+        
+        animator.SetBool("Grounded", isGrounded);
+        
+        
     }
 
     private void Interact(InputAction.CallbackContext _)
