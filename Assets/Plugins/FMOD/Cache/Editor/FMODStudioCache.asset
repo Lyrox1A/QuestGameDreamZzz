@@ -100,7 +100,7 @@ MonoBehaviour:
   StudioPath: bank:/Master
   lastModified: 637887373290740219
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-3824489622697871659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +126,24 @@ MonoBehaviour:
   Labels:
   - Grass
   - Wood
+  Exists: 1
+--- !u!114 &-3415867524089251618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambience.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD Assets/Ambience.bank
+  Name: Ambience
+  StudioPath: 
+  lastModified: 637888484720871271
+  FileSizes: []
   Exists: 1
 --- !u!114 &-1317948817288809286
 MonoBehaviour:
@@ -196,6 +214,7 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 5133512137431039033}
   - {fileID: -5859802316640530547}
+  - {fileID: -3415867524089251618}
   EditorEvents:
   - {fileID: 7595193436711185507}
   - {fileID: 5958442156744753385}
@@ -214,7 +233,7 @@ MonoBehaviour:
   - {fileID: -5859802316640530547}
   StringsBanks:
   - {fileID: 5133512137431039033}
-  cacheTime: 637887373291073623
+  cacheTime: 637888484731267113
   cacheVersion: 10
 --- !u!114 &1030783534771100412
 MonoBehaviour:
