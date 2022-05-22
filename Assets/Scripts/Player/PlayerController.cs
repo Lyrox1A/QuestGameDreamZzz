@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         DisableInput();
-        
+       
     }
     
     private void OnDestroy()
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
         
         //Movement
         
-        float targetSpeed = moveInput == Vector2.zero ? 0f : moveSpeed * moveInput.magnitude; // target speed = move speed if we have input otherwise its zero
+        float targetSpeed = moveInput == Vector2.zero ? 0f : moveSpeed * moveInput.magnitude; 
 
         Vector3 currentVelocity = lastMovement;
         currentVelocity.y = 0f;
@@ -195,6 +195,8 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = targetDirection * currentSpeed;    
 
         characterController.SimpleMove(movement);
+
+        lastMovement = movement;
 
     }
 

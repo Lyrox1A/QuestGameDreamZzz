@@ -503,6 +503,7 @@ MonoBehaviour:
   moveSpeed: 10
   speedChangeRate: 5
   rotationSpeed: 10
+  groundCheckDelay: 0.3
   cameraTarget: {fileID: 7700445828485057914}
   VerticalCameraRotationMin: -30
   VerticalCameraRotationMax: 70
@@ -757,12 +758,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8933c5e54a76354a9c0abcefcf78002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSound: {fileID: 0}
+  stepSound: {fileID: 2039607874410188583}
   stepSoundParameterName: surface
-  defaultPhysicMaterial: {fileID: 0}
+  defaultPhysicMaterial: {fileID: 13400000, guid: 29fbcceef8fd8a247a68728117c51b81,
+    type: 2}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   onStep:
     m_PersistentCalls:
       m_Calls: []
