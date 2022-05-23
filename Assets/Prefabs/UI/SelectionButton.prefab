@@ -52,11 +52,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -850206295
-      Data2: 1323658626
-      Data3: 4759481
-      Data4: 1170542732
-    Path: event:/UI/ui_hover
+      Data1: 1966538071
+      Data2: 1326550316
+      Data3: -519828065
+      Data4: -1529006789
+    Path: event:/murphysuihoversound
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -119,11 +119,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -2089040265
-      Data2: 1244051457
-      Data3: 585281953
-      Data4: -1407978525
-    Path: event:/UI/ui_click
+      Data1: -1624239233
+      Data2: 1186863156
+      Data3: -1944728161
+      Data4: -392996832
+    Path: event:/murphysuiclicksound
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -205,8 +205,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 67a36516399920142902503377f3ce2b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -391,8 +391,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

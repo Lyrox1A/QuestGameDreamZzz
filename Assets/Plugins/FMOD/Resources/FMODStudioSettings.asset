@@ -563,6 +563,8 @@ MonoBehaviour:
   - Master
   Banks:
   - Ambience
+  - Footsteps
+  - UI FX
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
