@@ -282,8 +282,23 @@ public class PlayerController : MonoBehaviour
         if (selectedInteractable != null)
         {
             selectedInteractable.Interact();
+            if (animator.GetBool("OnInteract")|| animator.GetBool("PickingUp") == true)
+            {
+                input.Player.Move.Disable();
+                
+            }
+            StartCoroutine(ResetInteraction());
         }
     }
+
+    IEnumerator ResetInteraction()
+    {
+        yield return new WaitForSeconds(3f);
+        animator.SetBool("OnInteract", false);
+        animator.SetBool("PickingUp", false);
+        input.Player.Move.Enable();
+    }
+    
     private void TrySelectInteractable(Collider other)
     {
         Interactable interactable = other.GetComponent<Interactable>();

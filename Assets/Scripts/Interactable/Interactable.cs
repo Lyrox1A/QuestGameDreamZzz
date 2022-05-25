@@ -13,6 +13,8 @@ public class Interactable : MonoBehaviour
    [SerializeField] private UnityEvent onSelect;
 
    [SerializeField] private UnityEvent onDeselect;
+   
+   
 
    private void Start()
    {
@@ -31,12 +33,21 @@ public class Interactable : MonoBehaviour
       onInteract.Invoke();
 
       Interaction interaction = FindActiveInteraction();
-      if (interaction != null)
+      if (interaction != null && GetComponent<Collectable>() == false)
       {
          interaction.Excute();
+         FindObjectOfType<PlayerController>().GetComponentInChildren<Animator>().SetBool("OnInteract", true);
+         
       }
+      StartCoroutine(ResetInteraction());
    }
-   
+
+   IEnumerator ResetInteraction()
+   {
+      yield return new WaitForSeconds(4f);
+      FindObjectOfType<PlayerController>().GetComponentInChildren<Animator>().SetBool("OnInteract", false);
+   }
+
    public void Select()
    {
       onSelect.Invoke();
