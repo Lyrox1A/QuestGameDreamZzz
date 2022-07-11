@@ -43,16 +43,16 @@ public class Reactor : MonoBehaviour
 
         if (newFulfilled && !fulfilled)
         {
+            if (questEntry != null)
+            {
+                questEntry.SetQuestStatus(true);
+            }
+            
             onFulfilled.Invoke();
         }
         
         else if (!newFulfilled && fulfilled)
         {
-            if (questEntry != null)
-            {
-                questEntry.SetQuestStatus(false);
-            }
-            
             onUnfulfilled.Invoke();
         }
 

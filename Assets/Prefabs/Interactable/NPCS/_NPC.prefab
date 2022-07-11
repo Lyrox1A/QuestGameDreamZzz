@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1489851715813380560, guid: 833bfe272079a0847a5335ca7d463cc6,
         type: 3}
       propertyPath: m_Name
-      value: _Interactable
+      value: _NPC
       objectReference: {fileID: 0}
     - target: {fileID: 6939789815953547323, guid: 833bfe272079a0847a5335ca7d463cc6,
         type: 3}

@@ -117,6 +117,8 @@ public class DialogBox : MonoBehaviour
     {
         float height = rectTransform.rect.height;
 
+        slideInOutSequence.Kill();
+        
         slideInOutSequence = DOTween.Sequence()
                                     .Append(DOMove(Vector2.zero).From(new Vector2(0, -height)))
                                     .Join(DOFade(1).From(0));
@@ -127,6 +129,8 @@ public class DialogBox : MonoBehaviour
     {
         float height = rectTransform.rect.height;
 
+        slideInOutSequence.Kill();
+        
         slideInOutSequence = DOTween.Sequence()
                                     .Append(DOMove(new Vector2(0, -height)).From(Vector2.zero))
                                     .Join(DOFade(0).From(1));

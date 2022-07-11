@@ -58,12 +58,12 @@ public class DialogUIController : MonoBehaviour
         }
         dialogBox.gameObject.SetActive(true);
         dialogBox.DOShow();
+        FindObjectOfType<PlayerController>().GetComponent<PlayerController>().enabled = false;
     }
 
     private void CloseDialog()
     {
         Dialog finishedDialog = currentDialog;
-        finishedDialog.onDialogEnd.Invoke();
 
         currentDialog = null;
         currentIndex = 0;
@@ -80,6 +80,9 @@ public class DialogUIController : MonoBehaviour
         {
             DialogClosed(finishedDialog);
         }
+        
+        finishedDialog.onDialogEnd.Invoke();
+        FindObjectOfType<PlayerController>().GetComponent<PlayerController>().enabled = true;
     }
 
         public void DisplayDialogEntry(int index)

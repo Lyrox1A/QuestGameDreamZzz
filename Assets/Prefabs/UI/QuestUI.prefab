@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 5024716192117908524, guid: ad48850aae51a454ea0cfc3393e9ae5c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5024716192117908524, guid: ad48850aae51a454ea0cfc3393e9ae5c,
         type: 3}
@@ -141,12 +141,12 @@ PrefabInstance:
     - target: {fileID: 5024716192117908524, guid: ad48850aae51a454ea0cfc3393e9ae5c,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5024716192117908524, guid: ad48850aae51a454ea0cfc3393e9ae5c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5024716192117908524, guid: ad48850aae51a454ea0cfc3393e9ae5c,
         type: 3}
@@ -191,12 +191,12 @@ PrefabInstance:
     - target: {fileID: 5024716192117908524, guid: ad48850aae51a454ea0cfc3393e9ae5c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5024716192117908524, guid: ad48850aae51a454ea0cfc3393e9ae5c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5024716192117908524, guid: ad48850aae51a454ea0cfc3393e9ae5c,
         type: 3}
@@ -217,11 +217,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 01QuestChestnuts
-      objectReference: {fileID: 0}
-    - target: {fileID: 5319875402609197289, guid: ad48850aae51a454ea0cfc3393e9ae5c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad48850aae51a454ea0cfc3393e9ae5c, type: 3}

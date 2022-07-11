@@ -43,6 +43,7 @@ public class Interactable : MonoBehaviour
    }
 
    IEnumerator ResetInteraction()
+   
    {
       yield return new WaitForSeconds(4f);
       FindObjectOfType<PlayerController>().GetComponentInChildren<Animator>().SetBool("OnInteract", false);
