@@ -34,11 +34,17 @@ public class GameController : MonoBehaviour
         DialogUIController.DialogClosed -= EndDialog;
     }
 
-    private void EnterPlayMode()
+    public void EnterPlayMode()
     {
         Cursor.lockState = CursorLockMode.Locked; 
         player.EnableInput();
         
+    }
+
+    public void EnterCutsceneMode()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        player.DisableInput();
     }
 
     public void StartDialog(Dialog dialog)
